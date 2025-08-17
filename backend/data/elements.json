@@ -1,0 +1,18 @@
+[
+  { "id": 1, "name": "Fire", "description": "fire", "weakness_id1": 2, "created_date": "2025-08-16 01:30:00", "color": "#a83232", "weakness_id2": null },
+  { "id": 2, "name": "Water", "description": "water", "weakness_id1": 1, "created_date": "2025-08-16 01:30:16", "color": "#3c32a8", "weakness_id2": null },
+  { "id": 3, "name": "Air", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:33:59", "color": "", "weakness_id2": null },
+  { "id": 4, "name": "Earth", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:34:06", "color": "", "weakness_id2": null },
+  { "id": 5, "name": "Wood", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:34:19", "color": "", "weakness_id2": null },
+  { "id": 6, "name": "Metal", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:34:25", "color": "", "weakness_id2": null },
+  { "id": 7, "name": "Light", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:34:31", "color": "", "weakness_id2": null },
+  { "id": 8, "name": "Dark", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:34:35", "color": "", "weakness_id2": null },
+  { "id": 9, "name": "Ice", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:34:49", "color": "", "weakness_id2": null },
+  { "id": 10, "name": "Thunder", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:35:08", "color": "", "weakness_id2": null },
+  { "id": 11, "name": "Life", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:35:14", "color": "", "weakness_id2": null },
+  { "id": 12, "name": "Death", "description": "", "weakness_id1": null, "created_date": "2025-08-16 02:35:18", "color": "", "weakness_id2": null },
+  { "id": 13, "name": "Physical", "description": "", "weakness_id1": null, "created_date": "2025-08-16 12:29:50", "color": "", "weakness_id2": null },
+  { "id": 14, "name": "Magical", "description": "", "weakness_id1": null, "created_date": "2025-08-16 12:29:54", "color": "", "weakness_id2": null },
+  { "id": 15, "name": "Void", "description": "", "weakness_id1": null, "created_date": "2025-08-16 12:30:00", "color": "", "weakness_id2": null },
+  { "id": 16, "name": "Chaos", "description": "", "weakness_id1": null, "created_date": "2025-08-16 12:30:04", "color": "", "weakness_id2": null }
+]

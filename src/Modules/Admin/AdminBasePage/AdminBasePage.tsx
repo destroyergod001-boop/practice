@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Page } from "@app";
 import { AdminMainPageController } from "./AdminBasePageController";
 import { SidebarItem } from "@core/uiController/SidebarController"; // Corrected import path
+import { LayoutDashboard, Sparkles } from "lucide-react";
 
 export interface AdminMainPageProps {
   onNavigate: (page: Page) => void;
@@ -25,13 +26,13 @@ export const AdminBasePage: React.FC<AdminMainPageProps> = ({ onNavigate, onLogi
     {
       id: "dashboard",
       label: "Admin Dashboard",
-      icon: "",
+      icon: LayoutDashboard,
       onClick: () => controller.selectPage("dashboard"),
     },
     {
       id: "abilities",
       label: "Abilities Management",
-      icon: "",
+      icon: Sparkles,
       onClick: () => controller.selectPage("abilities"),
     },
   ];

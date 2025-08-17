@@ -16,6 +16,15 @@ const jsonColumns = {
     'element_mastery',
     'element_resistance'
   ],
+  abilities: [
+    'elements',
+    'basic_stats',
+    'requirement_stats',
+    'element_mastery',
+    'element_resistance',
+    'requirement_element_mastery',
+    'requirement_element_resistance'
+  ],
   // add more table entries here
 };
 
