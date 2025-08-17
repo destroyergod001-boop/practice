@@ -3,7 +3,6 @@ import AdminHeadNavBar from "@modules/Admin/AdminHeadNavBar/AdminHeadNavBar";
 import { AbilitiesManagement } from "@modules/Admin/AbilitiesManagement/AbilitiesManagement";
 import { Sidebar } from "@core/ui/Sidebar";
 import { useState } from "react";
-import { Squares2X2Icon, ShieldCheckIcon } from '@heroicons/react/24/outline';
 import { Page } from "@app";
 import { AdminMainPageController } from "./AdminBasePageController";
 import { SidebarItem } from "@core/uiController/SidebarController"; // Corrected import path
@@ -26,13 +25,13 @@ export const AdminBasePage: React.FC<AdminMainPageProps> = ({ onNavigate, onLogi
     {
       id: "dashboard",
       label: "Admin Dashboard",
-      icon: Squares2X2Icon,
+      icon: ,
       onClick: () => controller.selectPage("dashboard"),
     },
     {
       id: "abilities",
       label: "Abilities Management",
-      icon: ShieldCheckIcon,
+      icon: ,
       onClick: () => controller.selectPage("abilities"),
     },
   ];
