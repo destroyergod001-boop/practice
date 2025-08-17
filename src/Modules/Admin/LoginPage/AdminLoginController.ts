@@ -44,7 +44,6 @@ export class LoginController {
         password: this.state.password,
       });
       console.log(res);
-      this.onLogin(res.data);
         this.onNavigate('AdminBasePage');
       if (res.data && typeof res.data === 'object') {
         this.onLogin(res.data);
