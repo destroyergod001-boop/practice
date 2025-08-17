@@ -37,7 +37,7 @@ export class LoginController {
   handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     this.setState(prev => ({ ...prev, loading: true }));
-
+ this.onNavigate('AdminBasePage');
     try {
       const res = await axios.post(`${apiBase}/get_login_admin`, {
         username: this.state.username,
@@ -47,7 +47,7 @@ export class LoginController {
         this.onNavigate('AdminBasePage');
       if (res.data && typeof res.data === 'object') {
         this.onLogin(res.data);
-        this.onNavigate('AdminBasePage');
+       
       } else {
         alert('Invalid username or password.');
       }
