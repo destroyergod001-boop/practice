@@ -1,4 +1,3 @@
-import { Bars3Icon } from '@heroicons/react/24/outline';
 import { Button } from '@core/ui/Button'; // Import the Button component
 
 interface AdminHeadNavBarProps {
@@ -14,7 +13,7 @@ export default function AdminHeadNavBar({ onCollapseToggle, onSignOut }: AdminHe
           onClick={onCollapseToggle}
           className="text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 focus:outline-none"
         >
-          <Bars3Icon className="h-6 w-6" />
+         <div> x </div>
         </button>
         <h1 className="text-xl font-semibold text-gray-900 dark:text-white">Admin Panel</h1>
       </div>
