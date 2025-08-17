@@ -25,13 +25,13 @@ export const AdminBasePage: React.FC<AdminMainPageProps> = ({ onNavigate, onLogi
     {
       id: "dashboard",
       label: "Admin Dashboard",
-      icon: ,
+      icon: "",
       onClick: () => controller.selectPage("dashboard"),
     },
     {
       id: "abilities",
       label: "Abilities Management",
-      icon: ,
+      icon: "",
       onClick: () => controller.selectPage("abilities"),
     },
   ];
