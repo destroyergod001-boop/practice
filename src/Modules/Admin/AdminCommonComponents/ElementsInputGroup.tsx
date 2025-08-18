@@ -84,7 +84,7 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
     )}
   </div>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
     {elements.map((element) => {
       const value = currentElements[element.name] || 0;
       return (
@@ -111,7 +111,7 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
               onChange={(e) =>
                 handleElementChange(element.name, parseInt(e.target.value) || 0)
               }
-              className="w-32 h-2 rounded-lg appearance-none cursor-pointer"
+              className="w-22 h-2 rounded-lg appearance-none cursor-pointer"
               style={{
                 background: `linear-gradient(to right, ${element.color} ${(value + 100) / 2}%, #d1d5db ${(value + 100) / 2}%)`,
               }}
