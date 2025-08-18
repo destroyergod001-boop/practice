@@ -99,6 +99,7 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
             >
               {element.name}
             </label>
+            <break></break>
           </div>
 
           <div className="flex items-center space-x-2 w-full">
