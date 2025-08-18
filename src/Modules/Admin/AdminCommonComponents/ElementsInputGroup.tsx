@@ -93,12 +93,6 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
           className="flex items-center justify-between bg-white dark:bg-gray-700 p-3 rounded-md"
         >
           <div className="flex items-center flex-1 mr-3">
-            {element.color && (
-              <div
-                className="w-4 h-4 rounded-full mr-2 border border-gray-300"
-                style={{ backgroundColor: element.color }}
-              />
-            )}
             <label
               className="text-sm font-medium text-gray-700 dark:text-gray-300 truncate"
               title={element.name}
