@@ -1,26 +1,19 @@
 import React from 'react';
 import { AbilityModel } from '@core/Model/Ability';
+import { AbilityInputController } from './controllers/AbilityInputController';
 
 interface AbilityBasicTabProps {
   data: Partial<AbilityModel>;
   onChange: (data: Partial<AbilityModel>) => void;
+  errors?: Record<string, string>;
 }
 
-export const AbilityBasicTab: React.FC<AbilityBasicTabProps> = ({ data, onChange }) => {
+export const AbilityBasicTab: React.FC<AbilityBasicTabProps> = ({ data, onChange, errors = {} }) => {
   const handleChange = (field: keyof AbilityModel, value: any) => {
     onChange({ ...data, [field]: value });
   };
 
-  const categoryOptions = [
-    { value: 'single', label: 'Single Target' },
-    { value: 'aoe', label: 'Area of Effect (AOE)' },
-    { value: 'dot', label: 'Damage Over Time (DOT)' },
-    { value: 'hot', label: 'Heal Over Time (HOT)' },
-    { value: 'buff', label: 'Buff' },
-    { value: 'debuff', label: 'Debuff' },
-    { value: 'utility', label: 'Utility' },
-    { value: 'passive', label: 'Passive' }
-  ];
+  const categoryOptions = AbilityInputController.getCategoryOptions();
 
   return (
     <div className="space-y-6">
@@ -38,6 +31,9 @@ export const AbilityBasicTab: React.FC<AbilityBasicTabProps> = ({ data, onChange
             placeholder="Enter ability name"
             required
           />
+          {errors.name && (
+            <p className="text-xs text-red-600 mt-1">{errors.name}</p>
+          )}
         </div>
 
         {/* Category */}
@@ -56,6 +52,9 @@ export const AbilityBasicTab: React.FC<AbilityBasicTabProps> = ({ data, onChange
               </option>
             ))}
           </select>
+          {errors.category && (
+            <p className="text-xs text-red-600 mt-1">{errors.category}</p>
+          )}
         </div>
 
         {/* Tier */}
@@ -71,6 +70,9 @@ export const AbilityBasicTab: React.FC<AbilityBasicTabProps> = ({ data, onChange
             min="1"
             max="10"
           />
+          {errors.tier && (
+            <p className="text-xs text-red-600 mt-1">{errors.tier}</p>
+          )}
         </div>
 
         {/* Level */}

@@ -6,13 +6,8 @@ import { AbilityBasicTab } from './AbilityBasicTab';
 import { StatsInputGroup } from '../AdminCommonComponents/StatsInputGroup';
 import { ElementsInputGroup } from '../AdminCommonComponents/ElementsInputGroup';
 import { AbilityAssetTab } from './AbilityAssetTab';
-import { TableApi } from '@core/api/tableApi';
-import { AbilityDTOFromApi } from '@core/Model/Ability';
-
-const abilityApi = new TableApi<AbilityDTOFromApi, AbilityModel>({
-  basePath: '/api/abilities',
-  tableName: 'abilities'
-});
+import { useAbilityModalController } from './controllers/AbilityModalController';
+import { AbilityInputController } from './controllers/AbilityInputController';
 
 interface AbilityModalProps {
   isOpen: boolean;
@@ -27,75 +22,16 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
   onSave,
   ability
 }) => {
-  const [activeTab, setActiveTab] = useState('basic');
-  const [abilityData, setAbilityData] = useState<Partial<AbilityModel>>({
-    name: '',
-    description: '',
-    tier: 1,
-    category: 'single',
-    turn: 1,
-    gold: 0,
-    level: 1,
-    basic_effect_fixed_value: 0,
-    basic_effect_percentage_value: 0,
-    monster_id: 0,
-    monster_number: 0,
-    elements: {},
-    basic_stats: {},
-    requirement_stats: {},
-    element_mastery: {},
-    element_resistance: {},
-    requirement_element_mastery: {},
-    requirement_element_resistance: {},
-    asset_location: ''
-  });
-  const [loading, setLoading] = useState(false);
+  const { state, controller } = useAbilityModalController();
 
   useEffect(() => {
-    if (ability) {
-      setAbilityData(ability);
-    } else {
-      setAbilityData({
-        name: '',
-        description: '',
-        tier: 1,
-        category: 'single',
-        turn: 1,
-        gold: 0,
-        level: 1,
-        basic_effect_fixed_value: 0,
-        basic_effect_percentage_value: 0,
-        monster_id: 0,
-        monster_number: 0,
-        elements: {},
-        basic_stats: {},
-        requirement_stats: {},
-        element_mastery: {},
-        element_resistance: {},
-        requirement_element_mastery: {},
-        requirement_element_resistance: {},
-        asset_location: ''
-      });
-    }
-    setActiveTab('basic');
+    controller.initializeAbility(ability);
   }, [ability, isOpen]);
 
   const handleSave = async () => {
-    try {
-      setLoading(true);
-      if (ability?.id) {
-        // Update existing ability
-        await abilityApi.update([{ id: ability.id, status: '=' }], abilityData);
-      } else {
-        // Create new ability
-        await abilityApi.create(abilityData);
-      }
+    const success = await controller.saveAbility(ability);
+    if (success) {
       onSave();
-    } catch (error) {
-      console.error('Failed to save ability:', error);
-      alert('Failed to save ability');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -121,9 +57,9 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => controller.setActiveTab(tab.id as any)}
                 className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === tab.id
+                  state.activeTab === tab.id
                     ? 'border-blue-500 text-blue-600 dark:text-blue-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
                 }`}
@@ -136,18 +72,25 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
 
         {/* Tab Content */}
         <div className="min-h-[400px]">
-          {activeTab === 'basic' && (
+          {state.errors.general && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+              <p className="text-sm text-red-600">{state.errors.general}</p>
+            </div>
+          )}
+
+          {state.activeTab === 'basic' && (
             <AbilityBasicTab
-              data={abilityData}
-              onChange={setAbilityData}
+              data={state.abilityData}
+              onChange={controller.updateAbilityData.bind(controller)}
+              errors={state.errors}
             />
           )}
 
-          {activeTab === 'stats' && (
+          {state.activeTab === 'stats' && (
             <div className="space-y-6">
               <StatsInputGroup
-                data={abilityData}
-                onChange={setAbilityData}
+                data={state.abilityData}
+                onChange={controller.updateAbilityData.bind(controller)}
                 jsonFieldKey="basic_stats"
                 title="Basic Stats"
                 description="Base statistical bonuses provided by this ability"
@@ -155,11 +98,11 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
             </div>
           )}
 
-          {activeTab === 'requirements' && (
+          {state.activeTab === 'requirements' && (
             <div className="space-y-6">
               <StatsInputGroup
-                data={abilityData}
-                onChange={setAbilityData}
+                data={state.abilityData}
+                onChange={controller.updateAbilityData.bind(controller)}
                 jsonFieldKey="requirement_stats"
                 title="Requirement Stats"
                 description="Minimum stats required to use this ability"
@@ -167,32 +110,32 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
             </div>
           )}
 
-          {activeTab === 'elements' && (
+          {state.activeTab === 'elements' && (
             <div className="space-y-6">
               <ElementsInputGroup
-                data={abilityData}
-                onChange={setAbilityData}
+                data={state.abilityData}
+                onChange={controller.updateAbilityData.bind(controller)}
                 jsonFieldKey="element_mastery"
                 title="Element Mastery"
                 description="Elemental mastery bonuses provided by this ability"
               />
               <ElementsInputGroup
-                data={abilityData}
-                onChange={setAbilityData}
+                data={state.abilityData}
+                onChange={controller.updateAbilityData.bind(controller)}
                 jsonFieldKey="element_resistance"
                 title="Element Resistance"
                 description="Elemental resistance bonuses provided by this ability"
               />
               <ElementsInputGroup
-                data={abilityData}
-                onChange={setAbilityData}
+                data={state.abilityData}
+                onChange={controller.updateAbilityData.bind(controller)}
                 jsonFieldKey="requirement_element_mastery"
                 title="Required Element Mastery"
                 description="Minimum elemental mastery required to use this ability"
               />
               <ElementsInputGroup
-                data={abilityData}
-                onChange={setAbilityData}
+                data={state.abilityData}
+                onChange={controller.updateAbilityData.bind(controller)}
                 jsonFieldKey="requirement_element_resistance"
                 title="Required Element Resistance"
                 description="Minimum elemental resistance required to use this ability"
@@ -200,10 +143,10 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
             </div>
           )}
 
-          {activeTab === 'asset' && (
+          {state.activeTab === 'asset' && (
             <AbilityAssetTab
-              data={abilityData}
-              onChange={setAbilityData}
+              data={state.abilityData}
+              onChange={controller.updateAbilityData.bind(controller)}
             />
           )}
         </div>
@@ -213,7 +156,7 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button onClick={handleSave} loading={loading}>
+          <Button onClick={handleSave} loading={state.loading}>
             {ability ? 'Update' : 'Create'} Ability
           </Button>
         </div>
