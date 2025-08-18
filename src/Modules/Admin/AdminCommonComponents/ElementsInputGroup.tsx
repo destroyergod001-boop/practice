@@ -77,58 +77,62 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
 
   return (
   <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-  <div className="mb-4">
-    <h4 className="font-semibold text-lg text-gray-800 dark:text-gray-200">{title}</h4>
-    {description && (
-      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{description}</p>
-    )}
-  </div>
+      {/* Header */}
+      <div className="mb-4">
+        <h4 className="font-semibold text-lg text-gray-800 dark:text-gray-200">
+          {title}
+        </h4>
+        {description && (
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+            {description}
+          </p>
+        )}
+      </div>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-    {elements.map((element) => {
-      const value = currentElements[element.name] || 0;
-      return (
-        <div
-          key={element.id}
-          className="flex items-center justify-between bg-white dark:bg-gray-700 p-3 rounded-md"
-        >
-          <div className="flex items-center flex-1 mr-3">
-            <label
-              className="text-sm font-medium text-gray-700 dark:text-gray-300 truncate"
-              title={element.name}
+      {/* Elements grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+        {elements.map((element) => {
+          const value = currentElements[element.name] || 0;
+          return (
+            <div
+              key={element.id}
+              className="bg-white dark:bg-gray-700 p-3 rounded-md"
             >
-              {element.name}
-            </label>
-            <br></br>
-          </div>
+              {/* Label */}
+              <label
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 truncate mb-2"
+                title={element.name}
+              >
+                {element.name}
+              </label>
 
-          <div className="flex items-center space-x-2 w-full">
-            {/* Slider */}
-            <input
-              type="range"
-              min="-100"
-              max="100"
-              value={value}
-              onChange={(e) =>
-                handleElementChange(element.name, parseInt(e.target.value) || 0)
-              }
-              className="h-2 rounded-lg appearance-none cursor-pointer flex-grow"
-              style={{
-                width: "70%", // you can use "100%", "60%", or even "20vw"
-                background: `linear-gradient(to right, ${element.color} ${(value + 100) / 2}%, #d1d5db ${(value + 100) / 2}%)`,
-              }}
-            />
-            {/* Value Display */}
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 w-10 text-right">
-              {value}
-            </span>
-          </div>
-        </div>
-      );
-    })}
-  </div>
-</div>
-
-
+              {/* Slider + value */}
+              <div className="flex items-center space-x-2 w-full">
+                <input
+                  type="range"
+                  min="-100"
+                  max="100"
+                  value={value}
+                  onChange={(e) =>
+                    handleElementChange(
+                      element.name,
+                      parseInt(e.target.value) || 0
+                    )
+                  }
+                  className="h-2 rounded-lg appearance-none cursor-pointer flex-grow"
+                  style={{
+                    background: `linear-gradient(to right, ${element.color} ${(value + 100) / 2}%, #d1d5db ${(value + 100) / 2}%)`,
+                  }}
+                />
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300 w-10 text-right">
+                  {value}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
+
 };
