@@ -118,7 +118,7 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
   }
   className="h-2 rounded-lg appearance-none cursor-pointer"
   style={{
-    width: "70%",
+    width: "80%",
     background: `linear-gradient(to right, ${element.color} ${(value + 100) / 2}%, #d1d5db ${(value + 100) / 2}%)`,
   }}
 />
