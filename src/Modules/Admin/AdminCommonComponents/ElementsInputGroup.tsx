@@ -102,7 +102,9 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
               </label>
             </div>
             <input
-              type="number"
+              type="range"
+              min="-100"
+              max="100"
               value={currentElements[element.name] || 0}
               onChange={(e) => handleElementChange(element.name, parseInt(e.target.value) || 0)}
               className="w-20 px-2 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white text-right text-sm"
