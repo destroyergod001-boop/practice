@@ -38,7 +38,6 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
   const tabs = [
     { id: 'basic', label: 'Basic' },
     { id: 'stats', label: 'Stats' },
-    { id: 'requirements', label: 'Requirements' },
     { id: 'elements', label: 'Elements' },
     { id: 'asset', label: 'Asset' }
   ];
