@@ -108,22 +108,21 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
 
               {/* Slider + value */}
               <div className="flex items-center space-x-2 w-full">
-                <input
-                  type="range"
-                  min="-100"
-                  max="100"
-                  value={value}
-                  onChange={(e) =>
-                    handleElementChange(
-                      element.name,
-                      parseInt(e.target.value) || 0
-                    )
-                  }
-                  className="h-2 rounded-lg appearance-none cursor-pointer flex-grow"
-                  style={{
-                    background: `linear-gradient(to right, ${element.color} ${(value + 100) / 2}%, #d1d5db ${(value + 100) / 2}%)`,
-                  }}
-                />
+               <input
+  type="range"
+  min="-100"
+  max="100"
+  value={value}
+  onChange={(e) =>
+    handleElementChange(element.name, parseInt(e.target.value) || 0)
+  }
+  className="h-2 rounded-lg appearance-none cursor-pointer"
+  style={{
+    width: "60%",
+    background: `linear-gradient(to right, ${element.color} ${(value + 100) / 2}%, #d1d5db ${(value + 100) / 2}%)`,
+  }}
+/>
+
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300 w-10 text-right">
                   {value}
                 </span>
