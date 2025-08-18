@@ -101,7 +101,7 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
             </label>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 w-full">
             {/* Slider */}
             <input
               type="range"
@@ -111,8 +111,9 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
               onChange={(e) =>
                 handleElementChange(element.name, parseInt(e.target.value) || 0)
               }
-              className="w-22 h-2 rounded-lg appearance-none cursor-pointer"
+              className="h-2 rounded-lg appearance-none cursor-pointer flex-grow"
               style={{
+                width: "70%", // you can use "100%", "60%", or even "20vw"
                 background: `linear-gradient(to right, ${element.color} ${(value + 100) / 2}%, #d1d5db ${(value + 100) / 2}%)`,
               }}
             />
@@ -126,6 +127,7 @@ export const ElementsInputGroup: React.FC<ElementsInputGroupProps> = ({
     })}
   </div>
 </div>
+
 
   );
 };
