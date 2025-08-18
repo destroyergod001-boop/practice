@@ -76,7 +76,7 @@ export const StatsInputGroup: React.FC<StatsInputGroupProps> = ({
         )}
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
         {stats.map((stat) => (
           <div key={stat.id} className="flex items-center justify-between bg-white dark:bg-gray-700 p-3 rounded-md">
             <label
