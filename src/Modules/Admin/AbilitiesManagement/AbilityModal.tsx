@@ -95,11 +95,7 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
                 title="Basic Stats"
                 description="Base statistical bonuses provided by this ability"
               />
-            </div>
-          )}
-
-          {state.activeTab === 'requirements' && (
-            <div className="space-y-6">
+            
               <StatsInputGroup
                 data={state.abilityData}
                 onChange={controller.updateAbilityData.bind(controller)}
@@ -111,37 +107,38 @@ export const AbilityModal: React.FC<AbilityModalProps> = ({
           )}
 
           {state.activeTab === 'elements' && (
-            <div className="space-y-6">
-              <ElementsInputGroup
-                data={state.abilityData}
-                onChange={controller.updateAbilityData.bind(controller)}
-                jsonFieldKey="element_mastery"
-                title="Element Mastery"
-                description="Elemental mastery bonuses provided by this ability"
-              />
-              <ElementsInputGroup
-                data={state.abilityData}
-                onChange={controller.updateAbilityData.bind(controller)}
-                jsonFieldKey="element_resistance"
-                title="Element Resistance"
-                description="Elemental resistance bonuses provided by this ability"
-              />
-              <ElementsInputGroup
-                data={state.abilityData}
-                onChange={controller.updateAbilityData.bind(controller)}
-                jsonFieldKey="requirement_element_mastery"
-                title="Required Element Mastery"
-                description="Minimum elemental mastery required to use this ability"
-              />
-              <ElementsInputGroup
-                data={state.abilityData}
-                onChange={controller.updateAbilityData.bind(controller)}
-                jsonFieldKey="requirement_element_resistance"
-                title="Required Element Resistance"
-                description="Minimum elemental resistance required to use this ability"
-              />
-            </div>
-          )}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <ElementsInputGroup
+      data={state.abilityData}
+      onChange={controller.updateAbilityData.bind(controller)}
+      jsonFieldKey="element_mastery"
+      title="Element Mastery"
+      description="Elemental mastery bonuses provided by this ability"
+    />
+    <ElementsInputGroup
+      data={state.abilityData}
+      onChange={controller.updateAbilityData.bind(controller)}
+      jsonFieldKey="element_resistance"
+      title="Element Resistance"
+      description="Elemental resistance bonuses provided by this ability"
+    />
+    <ElementsInputGroup
+      data={state.abilityData}
+      onChange={controller.updateAbilityData.bind(controller)}
+      jsonFieldKey="requirement_element_mastery"
+      title="Required Element Mastery"
+      description="Minimum elemental mastery required to use this ability"
+    />
+    <ElementsInputGroup
+      data={state.abilityData}
+      onChange={controller.updateAbilityData.bind(controller)}
+      jsonFieldKey="requirement_element_resistance"
+      title="Required Element Resistance"
+      description="Minimum elemental resistance required to use this ability"
+    />
+  </div>
+)}
+
 
           {state.activeTab === 'asset' && (
             <AbilityAssetTab
